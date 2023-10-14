@@ -1,0 +1,17 @@
+@import "./base.css";
+
+body{
+  background-color: #828282;
+}
+
+#app {
+  margin: 0 auto;
+  font-weight: normal;
+  height: 100vh;
+}
+
+.container {
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
