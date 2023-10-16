@@ -20,7 +20,7 @@ const router = new VueRouter({
       component: () => import("../views/ProfileView.vue"),
     },
     {
-      path: '*',
+      path: "*",
       component: Page404,
     },
   ],

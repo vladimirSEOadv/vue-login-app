@@ -1,37 +1,21 @@
 <script lang="ts">
 import Vue from "vue";
 import axios from "axios";
+import userStore from "../stores/userStore";
+
 export default Vue.extend({
   data() {
     return {
-      inputName: "",
-      inputPhone: "",
+      inputName: "Bret",
+      inputPhone: "1-770-736-8031 x56442",
       invalidInputName: false,
       invalidInputPhone: false,
-      errors:[],
+      errors: [],
     };
   },
   methods: {
-    validateName() {
-      if (this.inputName === '') {
-        this.invalidInputName = false;
-      } else {
-        const regex = /^[a-zA-Z\s]+$/; // Буквы и символ пробела
-        this.invalidInputName = !regex.test(this.inputName);
-      }
-    },
-    validatePhone() {
-      if (this.inputPhone === '') {
-        this.invalidInputPhone = false;
-      } else {
-        // TODO исправить регулярку для валидных значений вроде 1-770-736-8031 x56442
-        const regex = /^[0-9-+]+$/; // Только числа и символы
-        this.invalidInputPhone = !regex.test(this.inputPhone);
-      }
-    },
-    async submitForm() {
+    async fetchUsers() {
       try {
-        // Получение списка пользователей
         const usersResponse = await axios.get(
           "https://jsonplaceholder.typicode.com/users"
         );
@@ -39,27 +23,48 @@ export default Vue.extend({
           throw new Error("empty response");
         }
         console.log("users", usersResponse);
-        const users = usersResponse.data;
-
+        return usersResponse.data;
+      } catch (error) {
+        console.log("error", error);
+        return [];
+      }
+    },
+    validateName() {
+      if (this.inputName === "") {
+        this.invalidInputName = false;
+      } else {
+        const regex = /^[a-zA-Z\s]+$/; // Буквы и символ пробела
+        this.invalidInputName = !regex.test(this.inputName);
+      }
+    },
+    validatePhone() {
+      if (this.inputPhone === "") {
+        this.invalidInputPhone = false;
+      } else {
+        // TODO исправить регулярку для валидных значений вроде 1-770-736-8031 x56442
+        const regex = /^[0-9-+x\s]+$/;
+        this.invalidInputPhone = !regex.test(this.inputPhone);
+      }
+    },
+    async submitForm() {
+      try {
+        const res = await this.fetchUsers();
         // Поиск пользователя с заданным именем и номером
-        const foundUser = users.find(
-          (user: { name: string; phone: string }) =>
-            user.name === this.inputName && user.phone === this.inputPhone
+        const foundUser = res.find(
+          (user: { username: string; phone: string }) =>
+            user.username === this.inputName && user.phone === this.inputPhone
         );
-
+        console.log("foundUser", foundUser);
         if (foundUser) {
-          // Отправка данных на сервер
-          // const response = await axios.post('/your-api-endpoint', {
-          //   name: this.inputName,
-          //   phoneNumber: this.inputNumber
-          // });
+          // Сохранение данных в Vuex-хранилище
+          userStore.commit("setUser", foundUser);
+          // TODO Отправка данных на сервер
           this.$router.push("/profile");
         } else {
           console.log("not found user");
         }
       } catch (error) {
         console.log("error", error);
-        // Обработка ошибки при отправке данных на сервер или при получении списка пользователей
       }
     },
   },
@@ -90,30 +95,25 @@ export default Vue.extend({
         />
       </div>
       <button @click.prevent="submitForm" class="form__button" type="submit">
-        Register
+        Login
       </button>
     </form>
-    <p>Leanne Graham</p>
-    <p>1-770-736-8031 x56442</p>
     <div v-if="errors.length">
-      <b>Please correct the following error(s):</b>
       <ul>
         <li :key="error" v-for="error in errors">{{ error }}</li>
       </ul>
-<!--      <ul>-->
-<!--        <li :key="error" v-for="error in errors">{{ error }}</li>-->
-<!--      </ul>-->
     </div>
+    <details class="hint">
+      <summary></summary>
+      <p>Bret</p>
+      <p>1-770-736-8031 x56442</p>
+    </details>
   </div>
 </template>
 
 <style scoped>
 .invalid-input {
   background-color: red;
-}
-
-.invalid-input:after {
-  content: "LLLL";
 }
 
 .form {
@@ -124,11 +124,9 @@ export default Vue.extend({
   border-radius: 5px;
   overflow: hidden;
 }
-
 .form__content {
   padding: 0 25px 30px 25px;
 }
-
 .form__title {
   padding: 15px 0;
   background-color: #a5a5a5;
@@ -143,7 +141,6 @@ export default Vue.extend({
   line-height: 21px;
   letter-spacing: -0.425px;
 }
-
 .form__description {
   height: 50px;
   display: flex;
@@ -156,14 +153,12 @@ export default Vue.extend({
   line-height: 21px; /* 140% */
   letter-spacing: -0.375px;
 }
-
 .form__inputs {
   display: flex;
   flex-direction: column;
   gap: 20px;
   margin-bottom: 25px;
 }
-
 .form__input {
   padding: 10px;
   border-radius: 5px;
@@ -175,7 +170,6 @@ export default Vue.extend({
   letter-spacing: -0.425px;
   border: none;
 }
-
 .form__button {
   width: 100%;
   padding: 10px 30px;
@@ -190,16 +184,20 @@ export default Vue.extend({
   transition: color 0.1s ease-in-out, box-shadow 0.1s ease-in-out,
     transform 0.1s ease-in-out;
 }
-
 .form__button:hover {
   color: #000000;
   box-shadow: 2px 4px 8px 1px #181818;
   transform: translateY(-1px);
   transform: scale(1.03);
 }
-
 .form__button:active {
   color: #000000;
   transform: translateY(0);
+}
+
+.hint {
+  position: absolute;
+  top: -12px;
+  left: 0;
 }
 </style>

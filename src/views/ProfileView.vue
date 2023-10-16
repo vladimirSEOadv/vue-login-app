@@ -1,7 +1,20 @@
 <template>
-  <div class="profile">
-    <h1>This is an profile page</h1>
+  <div class="container">
+    <UserInfo />
+    <TodoList />
   </div>
 </template>
 
-<style></style>
+<script>
+import UserInfo from "../components/UserInfo.vue";
+import TodoList from "./TodoList.vue";
+
+export default {
+  components: { TodoList, UserInfo },
+  data() {
+    return {
+      todo: [],
+    };
+  },
+};
+</script>
