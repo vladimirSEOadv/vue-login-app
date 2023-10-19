@@ -1,12 +1,12 @@
 <script>
-import TodoItem from "./TodoItem.vue";
 import axios from "axios";
-import FilterTodo from "./FilterTodo.vue";
-import FilterInput from "./FilterInput.vue";
+import TodoItem from "../components/TodoItem.vue";
+import FilterSelect from "../components/FilterSelect.vue";
+import FilterInput from "../components/FilterInput.vue";
 
 export default {
   name: "TodoList",
-  components: { FilterInput, FilterTodo, TodoItem },
+  components: { FilterInput, FilterSelect, TodoItem },
   data() {
     return {
       newTodo: {
@@ -183,14 +183,14 @@ export default {
     <div class="todo-section__todo-list todo-list">
       <header class="todo-list__header">
         <div class="todo-list__filters">
-          <FilterTodo
+          <FilterSelect
             v-for="select in options"
             :selectName="select.name"
             :selectOptions="select.values"
             :setFilter="setFilter"
             :key="select.name"
           />
-          <FilterTodo
+          <FilterSelect
             :selectName="'Favorite'"
             :selectOptions="['Favorite']"
             :setFilter="setFavoriteFilter"
