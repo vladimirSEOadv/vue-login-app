@@ -10,7 +10,10 @@ import Login from "@/components/LoginForm.vue";
 
 <style scoped>
 .login-page-wrapper {
-  margin-top: 208px;
-  margin-bottom: 243px;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
 }
 </style>
