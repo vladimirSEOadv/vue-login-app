@@ -1,59 +1,37 @@
-# login-app
+Для выполнения тестового задания требуются: Vue.js (допускается установка через CDN или
+однофайловый компонент .vue + npm + Webpack)
 
-This template should help get you started developing with Vue 3 in Vite.
+1. На главной странице необходимо вывести форму входа с такими полями: Username,
+   Phone number и кнопку Login.
+   https://www.figma.com/file/CoAspt2CyD6g3kXdXHdUOL/Untitled?node-id=0%3A1
+   Поле username - буквенное (валидация ввода только буквы)
+   Поле Phone number - пропускает числа и символы.
+   После того как пользователь заполнил поля и нажал кнопку Login, происходит следующее:
+   перебираем массив по ссылке - https://jsonplaceholder.typicode.com/users и прорабатываем два
+   сценария :
 
-## Recommended IDE Setup
+1.1) Если введенные username и Phone number - совпадают у юзера - редиректим его на
+следующую страницу описанную в пункте 2
+1.2) Если введен ные username и Phone number - не совпадают у юзера - выдаем ошибку (можно
+просто login error )
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+2. Если регистрация прошла успешно , то пользователь попадает на страницу, на которой :
+   Вверху необходимо вывести персональные данные юзера из JSON файла -
+   https://jsonplaceholder.typicode.com/users
 
-## Type Support for `.vue` Imports in TS
+На странице необходимо :
+Продемонстрировать умение работать с массивом данных(Todo list), полученных с помощью REST
+API в приложении на Vue.js
+Ссылка на REST API https://jsonplaceholder.typicode.com/todos
+Набор стилей CSS - адаптивный, желательно использовать Flexbox и/или CSS Grid
+Расположение элементов на странице - произвольное
+Нужно реализовать:
+1.Получение данных (JSON) из REST API и вывод их всех на страницу в виде списка
+2.Фильтрация данных полученных из API(данные выводятся согласно выбранных опций):
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
-
-```sh
-npm run build
-npm run test:e2e # or `npm run test:e2e:ci` for headless testing
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+- Создать фильтры по свойствам: select-ы с опциями (All, Completed, Uncompleted, Favorites и тд..)
+- Фильтр по ID юзера:select с опциями в виде цифр (userId из списка задач) и опция All Users
+  3.Поиск по ключу title. input, в который при вводе текста, выполняется поиск задач согласно
+  выбранных фильтров и значения этого input
+  4.На странице добавить⭐ блок "Create todo", в нем: 2 поля input(User ID и Title) и кнопка Add (После успешного создания добавляем в массив todo)
+  5.Реализовать возможность добавить Todo в избранное, хранить его id в localStorage
