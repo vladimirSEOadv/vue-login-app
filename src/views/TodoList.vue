@@ -106,7 +106,7 @@ export default {
           this.options.push({
             name: key,
             values: optionValues.map((item) =>
-              this.complidedOptionConverter(item.toString())
+              this.completedOptionConverter(item.toString())
             ),
           });
         } else {
@@ -119,14 +119,14 @@ export default {
         this.activeFilters[property] = [];
       } else {
         if (property === "completed") {
-          this.activeFilters[property] = this.complidedOptionConverter(value);
+          this.activeFilters[property] = this.completedOptionConverter(value);
         } else {
           this.activeFilters[property] = value;
         }
       }
       this.fetchTodos();
     },
-    complidedOptionConverter(str) {
+    completedOptionConverter(str) {
       const map = {
         true: "completed",
         completed: "true",
@@ -183,7 +183,7 @@ export default {
     </form>
     <div class="todo-section__todo-list todo-list">
       <header class="todo-list__header">
-      <h2 class="todo-list__title">Todos:</h2>
+        <h2 class="todo-list__title">Todos:</h2>
         <div class="todo-list__filters">
           <FilterSelect
             v-for="select in options"
@@ -225,7 +225,7 @@ label {
   margin-bottom: 30px;
 }
 
-.form-todo__title{
+.form-todo__title {
   font-size: 25px;
   margin-top: -10px;
   margin-bottom: 5px;
@@ -321,7 +321,7 @@ label {
 }
 @media (max-width: 768px) {
   .list-todo {
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: 1fr;
   }
 }
 </style>

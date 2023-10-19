@@ -10,12 +10,20 @@ export default {
 </script>
 
 <template>
-  <article class="todo">
+  <article class="todo" :class="{ completed: todo.completed }">
     <div class="todo__content">
-      <p>completed: {{ todo.completed }}</p>
-      <p>id: {{ todo.id }}</p>
-      <p>title: {{ todo.title }}</p>
-      <p>userId: {{ todo.userId }}</p>
+      <div class="todo__content-header header-todo">
+        <p class="header-todo__item">Id: {{ todo.id }}</p>
+        <p class="header-todo__item">UserId: {{ todo.userId }}</p>
+        <p class="header-todo__item header-todo__item--completed">
+          {{ todo.completed ? "Completed ✅" : "Not completed ❌" }}
+        </p>
+      </div>
+      <div class="todo__content-body body-todo">
+        <p class="body-todo__item" :class="{ through: todo.completed }">
+          Title: {{ todo.title }}
+        </p>
+      </div>
     </div>
     <button
       class="todo__button"
@@ -33,10 +41,43 @@ export default {
   background-color: #c3c3c3;
 }
 
+.todo__content-header {
+  max-width: 90%;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 400px) {
+  .todo__content-header {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
+.header-todo__item {
+  margin-right: 15px;
+}
+.through {
+  text-decoration: line-through;
+}
+
+.completed {
+  background-color: #8a9d8b;
+}
+.header-todo__item--completed {
+  margin-left: auto;
+}
+
+.body-todo__item {
+  font-size: 20px;
+}
+
 .todo__button {
   position: absolute;
-  top: 6px;
-  right: 5px;
+  top: 0;
+  right: 0;
   padding: 4px;
   background-color: transparent;
   border: none;
