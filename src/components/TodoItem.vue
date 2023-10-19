@@ -42,15 +42,16 @@ export default {
 }
 
 .todo__content-header {
-  max-width: 90%;
+  max-width: 80%;
   display: flex;
   align-items: center;
   gap: 5px;
   margin-bottom: 10px;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 460px) {
   .todo__content-header {
+    align-items: flex-start;
     flex-direction: column;
     gap: 0;
   }
@@ -68,6 +69,12 @@ export default {
 }
 .header-todo__item--completed {
   margin-left: auto;
+}
+
+@media (max-width: 460px){
+  .header-todo__item--completed {
+    margin-left: 0;
+  }
 }
 
 .body-todo__item {
