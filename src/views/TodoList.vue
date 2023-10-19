@@ -150,6 +150,7 @@ export default {
 <template>
   <section class="todo-section">
     <form class="todo-section__form form-todo" action="">
+      <div class="form-todo__title">Add todo</div>
       <div class="form-todo__fields fields-todo-form">
         <label
           class="fields-todo-form__label"
@@ -182,6 +183,7 @@ export default {
     </form>
     <div class="todo-section__todo-list todo-list">
       <header class="todo-list__header">
+      <h2 class="todo-list__title">Todos:</h2>
         <div class="todo-list__filters">
           <FilterSelect
             v-for="select in options"
@@ -221,6 +223,12 @@ label {
 
 .form-todo {
   margin-bottom: 30px;
+}
+
+.form-todo__title{
+  font-size: 25px;
+  margin-top: -10px;
+  margin-bottom: 5px;
 }
 
 .fields-todo-form {
@@ -289,6 +297,12 @@ label {
 
 .todo-list__header {
   margin-bottom: 15px;
+}
+
+.todo-list__title {
+  text-align: center;
+  font-size: 30px;
+  margin-top: -10px;
 }
 
 .todo-list__filters {

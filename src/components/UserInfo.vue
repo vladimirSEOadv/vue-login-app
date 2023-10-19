@@ -12,7 +12,7 @@ export default {
     <h1 class="user-info__title">User Information</h1>
     <div class="user-info__content">
       <div class="user-info__item">
-        <p>Main info:</p>
+        <p class="user-info__subtitle">Main info:</p>
         <ul class="user-info__list list">
           <li class="list__element"><span>Name:</span> {{ userInfo.name }}</li>
           <li class="list__element">
@@ -24,7 +24,7 @@ export default {
         </ul>
       </div>
       <div class="user-info__item">
-        <p>Address:</p>
+        <p class="user-info__subtitle">Address:</p>
         <ul class="user-info__list list">
           <li class="list__element">
             <span>Street:</span> {{ userInfo.address.street }}
@@ -41,7 +41,7 @@ export default {
         </ul>
       </div>
       <div class="user-info__item">
-        <p>Contacts:</p>
+        <p class="user-info__subtitle">Contacts:</p>
         <ul class="user-info__list list">
           <li class="list__element">
             <span>Phone:</span> {{ userInfo.phone }}
@@ -52,7 +52,7 @@ export default {
         </ul>
       </div>
       <div class="user-info__item">
-        <p>Company:</p>
+        <p class="user-info__subtitle">Company:</p>
         <ul class="user-info__list list">
           <li class="list__element">
             <span>Name:</span> {{ userInfo.company.name }}
@@ -80,6 +80,8 @@ export default {
 .user-info__title {
   width: 100%;
   margin-bottom: 10px;
+  margin-top: -10px;
+  font-size: 30px;
 }
 
 .user-info__content {
@@ -99,6 +101,10 @@ export default {
   border: 1px solid black;
   border-radius: 5px;
   background-color: #c3c3c3;
+}
+
+.user-info__subtitle {
+  font-size: 25px;
 }
 
 .list__element {
