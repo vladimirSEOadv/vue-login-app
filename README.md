@@ -3,7 +3,7 @@
 
 1. На главной странице необходимо вывести форму входа с такими полями: Username,
    Phone number и кнопку Login.
-   https://www.figma.com/file/CoAspt2CyD6g3kXdXHdUOL/Untitled?node-id=0%3A1
+   https://www.figma.com/file/W2bnVQFR9WlO9binpr9AAO/Vue-task?type=design&node-id=1%3A2&mode=design&t=3JQIa7NQAFuFyAG3-1
    Поле username - буквенное (валидация ввода только буквы)
    Поле Phone number - пропускает числа и символы.
    После того как пользователь заполнил поля и нажал кнопку Login, происходит следующее:
