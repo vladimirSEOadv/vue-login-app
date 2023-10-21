@@ -117,7 +117,8 @@ export default Vue.extend({
 }
 
 .login-form {
-  min-width: 447px;
+  width: 100%;
+  max-width: 447px;
   margin: 0 auto;
   align-items: center;
   background-color: #c3c3c3;
