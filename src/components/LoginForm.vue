@@ -103,10 +103,10 @@ export default Vue.extend({
         <li :key="error" v-for="error in errors">{{ error }}</li>
       </ul>
     </div>
-    <details class="login-form__hint">
-      <summary></summary>
-      <p>Bret</p>
-      <p>1-770-736-8031 x56442</p>
+    <details class="login-form__hint hint">
+      <summary class="hint__summary"></summary>
+      <p>User name: Bret</p>
+      <p>Phone: 1-770-736-8031 x56442</p>
     </details>
   </div>
 </template>
@@ -195,7 +195,26 @@ export default Vue.extend({
 
 .login-form__hint {
   position: absolute;
-  top: -12px;
+  top: -21px;
   left: 0;
 }
+
+.hint__summary{
+  animation: glow 1.5s ease infinite;
+  border-radius: 50px;
+}
+
+@keyframes glow {
+  0% {
+    background-color: #41f600;
+  }
+  50% {
+    background-color: #ffcc00;
+  }
+  100% {
+    background-color: #e72525;
+  }
+}
+
+
 </style>
